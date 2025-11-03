@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chukwuka Ikevude | AI/ML Engineer & Futurist</title>
+    <meta name="description" content="Applied ML Engineer building AI systems across agriculture, finance, healthcare, and more. Founder of BrainK.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #2d5016;
+            --secondary: #4a7c2c;
+            --accent: #6ba83e;
+            --dark: #1a1a1a;
+            --light: #f8f9fa;
+            --text: #333;
+            --text-light: #666;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background: var(--light);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, #2d5016 0%, #4a7c2c 50%, #6ba83e 100%);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"><path d="M0,0 L1200,0 L1200,60 Q900,100 600,60 T0,60 Z" fill="rgba(255,255,255,0.05)"/></svg>') repeat-x bottom;
+            background-size: 1200px 120px;
+        }
+
+        header .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .tagline {
+            font-size: 1.3em;
+            opacity: 0.95;
+            font-weight: 300;
+            margin-bottom: 30px;
+        }
+
+        .cta-buttons {
+            margin-top: 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            margin: 5px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid white;
+        }
+
+        .btn-primary {
+            background: white;
+            color: var(--primary);
+        }
+
+        .btn-primary:hover {
+            background: transparent;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        /* Navigation Styles */
+        nav {
+            background: white;
+            padding: 15px 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transform: translateY(-100%);
+            transition: transform 0.3s ease;
+        }
+
+        nav.visible {
+            transform: translateY(0);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .nav-logo {
+            font-weight: 700;
+            font-size: 1.2em;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-menu li {
+            margin: 0 20px;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .nav-menu a:hover {
+            color: var(--primary);
+        }
+
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 5px;
+        }
+
+        .nav-toggle span {
+            width: 25px;
+            height: 3px;
+            background: var(--primary);
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+
+        /* Mobile Navigation */
+        @media (max-width: 768px) {
+            .nav-toggle {
+                display: flex;
+            }
+            
+            .nav-menu {
+                position: fixed;
+                left: -100%;
+                top: 70px;
+                flex-direction: column;
+                background-color: white;
+                width: 100%;
+                text-align: center;
+                transition: 0.3s;
+                box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
+                padding: 20px 0;
+                z-index: 99;
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .nav-menu li {
+                margin: 15px 0;
+            }
+
+            /* Hamburger Animation */
+            .nav-toggle.active span:nth-child(1) {
+                transform: rotate(-45deg) translate(-5px, 6px);
+            }
+
+            .nav-toggle.active span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .nav-toggle.active span:nth-child(3) {
+                transform: rotate(45deg) translate(-5px, -6px);
+            }
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        section:nth-child(even) {
+            background: white;
+        }
+
+        h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: var(--dark);
+            text-align: center;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-light);
+            max-width: 700px;
+            margin: 0 auto 50px;
+            font-size: 1.1em;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .profile-image-container {
+            text-align: center;
+        }
+
+        .profile-image {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid transparent;
+            background: linear-gradient(white, white) padding-box,
+                        linear-gradient(135deg, var(--primary), var(--accent)) border-box;
+            box-shadow: 0 10px 40px rgba(45, 80, 22, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .profile-image:hover {
+            transform: scale(1.05);
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+            color: var(--text-light);
+            line-height: 1.8;
+        }
+
+        .highlights {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .highlight-card {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .highlight-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+        }
+
+        .highlight-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(45, 80, 22, 0.2);
+        }
+
+        .highlight-card h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .skill-category {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-category::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+        }
+
+        .skill-category h3 {
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-size: 1.3em;
+        }
+
+        .skill-category ul {
+            list-style: none;
+        }
+
+        .skill-category li {
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+            color: var(--text-light);
+        }
+
+        .skill-category li:last-child {
+            border-bottom: none;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(45, 80, 22, 0.2);
+        }
+
+        .project-header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 30px;
+        }
+
+        .project-header h3 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+
+        .project-body {
+            padding: 30px;
+        }
+
+        .project-body p {
+            color: var(--text-light);
+            margin-bottom: 20px;
+        }
+
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .tag {
+            background: linear-gradient(135deg, rgba(107, 168, 62, 0.1), rgba(74, 124, 44, 0.1));
+            color: var(--primary);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 600;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .contact-card {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .contact-card h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .contact-card a {
+            color: var(--secondary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        footer {
+            background: linear-gradient(135deg, var(--dark) 0%, #2a2a2a 100%);
+            color: white;
+            text-align: center;
+            padding: 40px 0;
+        }
+
+        footer p {
+            opacity: 0.8;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+
+            .tagline {
+                font-size: 1em;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .profile-image {
+                width: 250px;
+                height: 250px;
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn 1s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container fade-in">
+            <h1>Chukwuka Ikevude</h1>
+            <p class="tagline">AI/ML Engineer • Computer Vision • Edge Deployment • NLP •  Practical Solutions</p>
+            <p>Building intelligent systems across agriculture, healthcare, finance, and beyond</p>
+            <div class="cta-buttons">
+                <a href="#projects" class="btn btn-primary">View Projects</a>
+                <a href="#contact" class="btn btn-secondary">Get in Touch</a>
+            </div>
+        </div>
+    </header>
+
+    <nav id="main-nav">
+        <div class="nav-container">
+            <a href="#" class="nav-logo">Chukwuka Ikevude</a>
+            <ul class="nav-menu">
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#publications">Publications</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <button class="nav-toggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <section id="about">
+        <div class="container">
+            <h2>About Me</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>I'm an applied machine learning engineer and founder focused on building AI systems that solve real-world problems across multiple domains. My work sits at the intersection of computer vision, natural language processing, embedded/edge deployment, and practical productization.</p>
+                    <p>As the founder of <strong>BrainK</strong>, I build AI solutions for B2B and B2C clients. I've developed AI-driven solutions for many businesses and organizations, including the Association of Professional Women Engineers in Nigeria, with projects spanning disease detection, precision farming, healthcare diagnostics, and financial modeling.</p>
+                    <p>From crop disease detection to medical imaging, trading bots to home price prediction, I'm passionate about creating practical, production-ready AI solutions that deliver measurable impact across industries.</p>
+                </div>
+                <div class="about-image">
+                    <div class="profile-image-container">
+                        <img src="headshot.png" alt="Chukwuka Ikevude" class="profile-image">
+                    </div>
+                </div>
+            </div>
+
+            <div class="highlights">
+                <div class="highlight-card">
+                    <h3>🌾 Agricultural AI</h3>
+                    <p>Built disease detection systems for Nsukka Yellow Pepper and potato crops with automated pipelines and edge deployment.</p>
+                </div>
+                <div class="highlight-card">
+                    <h3>🏥 Healthcare Solutions</h3>
+                    <p>Developed medical diagnostic tools and classification systems for healthcare applications.</p>
+                </div>
+                <div class="highlight-card">
+                    <h3>💹 Financial ML</h3>
+                    <p>Created trading bots, home price prediction models, and explored FinRL for algorithmic trading strategies.</p>
+                </div>
+                <div class="highlight-card">
+                    <h3>⚡ Multimodal AI</h3>
+                    <p>Specialized in computer vision and NLP (LLMs), building multimodal systems optimized for edge deployment and production environments.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills">
+        <div class="container">
+            <h2>Tech Stack & Expertise</h2>
+            <p class="section-subtitle">Building production-ready AI systems across multiple domains</p>
+            
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>🤖 ML & Computer Vision</h3>
+                    <ul>
+                        <li>PyTorch & TensorFlow</li>
+                        <li>YOLO family (detection & segmentation)</li>
+                        <li>scikit-learn</li>
+                        <li>fastText & NLP</li>
+                        <li>Model optimization for edge</li>
+                        <li>Custom evaluation frameworks</li>
+                    </ul>
+                </div>
+
+                <div class="skill-category">
+                    <h3>🚀 Deployment & MLOps</h3>
+                    <ul>
+                        <li>Docker containerization</li>
+                        <li>FastAPI & Uvicorn</li>
+                        <li>Flask for lightweight servers</li>
+                        <li>Reproducible ML pipelines</li>
+                        <li>Continuous model monitoring</li>
+                        <li>Edge device deployment</li>
+                    </ul>
+                </div>
+
+                <div class="skill-category">
+                    <h3>💻 Languages & Tools</h3>
+                    <ul>
+                        <li>Python (primary)</li>
+                        <li>JavaScript/TypeScript</li>
+                        <li>SQL</li>
+                        <li>Bash scripting</li>
+                        <li>Git & version control</li>
+                        <li>Linux environments</li>
+                        <li>TensorFlow</li>
+                    </ul>
+                </div>
+
+                <div class="skill-category">
+                    <h3>🎯 Domain Applications</h3>
+                    <ul>
+                        <li>Agricultural AI systems</li>
+                        <li>Healthcare diagnostics</li>
+                        <li>Financial modeling & trading</li>
+                        <li>Real estate price prediction</li>
+                        <li>HR analytics & retention</li>
+                        <li>Waste management systems</li>
+                    </ul>
+                </div>
+
+                <div class="skill-category">
+                    <h3>🔬 Research & Development</h3>
+                    <ul>
+                        <li>Disease detection & classification</li>
+                        <li>Distribution shift analysis</li>
+                        <li>Adversarial testing</li>
+                        <li>Model robustness evaluation</li>
+                        <li>Transfer learning</li>
+                        <li>Data augmentation strategies</li>
+                    </ul>
+                </div>
+
+                <div class="skill-category">
+                    <h3>📊 Data & Analysis</h3>
+                    <ul>
+                        <li>Data preprocessing & cleaning</li>
+                        <li>Feature engineering</li>
+                        <li>Dataset adaptation & localization</li>
+                        <li>Exploratory data analysis</li>
+                        <li>Statistical modeling</li>
+                        <li>Jupyter notebooks</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <div class="container">
+            <h2>Featured Projects</h2>
+            <p class="section-subtitle">Building practical AI solutions from research to production</p>
+            
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>🌶️ Nsukka Yellow Pepper Disease Detector</h3>
+                    </div>
+                    <div class="project-body">
+                        <p>End-to-end pipeline for detecting diseases on NYP leaves. Includes field data collection, preprocessing, YOLO-based model training, and deployment to edge-capable servers for real-time diagnostics.</p>
+                        <div class="tech-tags">
+                            <span class="tag">PyTorch</span>
+                            <span class="tag">YOLO</span>
+                            <span class="tag">Edge ML</span>
+                            <span class="tag">Agriculture</span>
+                        </div>
+                        <a href="https://github.com/kadibia/NYP-" target="_blank" style="display: inline-block; margin-top: 15px; padding: 8px 20px; background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; text-decoration: none; border-radius: 5px; font-weight: 600; font-size: 0.9em;">View on GitHub</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>🏥 Medichal - LLM Healthcare Assistant</h3>
+                    </div>
+                    <div class="project-body">
+                        <p>AI-powered healthcare assistant built using LangChain for medical information retrieval and patient support. Leverages large language models for natural conversations and medical knowledge access.</p>
+                        <div class="tech-tags">
+                            <span class="tag">LangChain</span>
+                            <span class="tag">LLMs</span>
+                            <span class="tag">Healthcare</span>
+                            <span class="tag">NLP</span>
+                        </div>
+                        <a href="https://github.com/kadibia/medichal" target="_blank" style="display: inline-block; margin-top: 15px; padding: 8px 20px; background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; text-decoration: none; border-radius: 5px; font-weight: 600; font-size: 0.9em;">View on GitHub</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>🏘️ Lagos Home Price Prediction</h3>
+                    </div>
+                    <div class="project-body">
+                        <p>ML tool to estimate market value of homes across Lagos. Adapted from Bengaluru dataset with location mapping, currency conversion, and integration of Lagos demographics for accurate local predictions.</p>
+                        <div class="tech-tags">
+                            <span class="tag">scikit-learn</span>
+                            <span class="tag">Flask</span>
+                            <span class="tag">Regression</span>
+                            <span class="tag">Real Estate</span>
+                        </div>
+                        <a href="https://github.com/kadibia/Lagos-Home-Price-Prediction" target="_blank" style="display: inline-block; margin-top: 15px; padding: 8px 20px; background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; text-decoration: none; border-radius: 5px; font-weight: 600; font-size: 0.9em;">View on GitHub</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>🎬 Ifenkiri - Movie Discovery</h3>
+                    </div>
+                    <div class="project-body">
+                        <p>Sleek and responsive movie discovery webapp designed to help users discover and explore a vast collection of movies. Search, browse, and explore detailed film information with modern interface.</p>
+                        <div class="tech-tags">
+                            <span class="tag">JavaScript</span>
+                            <span class="tag">Web Development</span>
+                            <span class="tag">API Integration</span>
+                            <span class="tag">UI/UX</span>
+                        </div>
+                        <a href="https://github.com/kadibia/ifenkiri" target="_blank" style="display: inline-block; margin-top: 15px; padding: 8px 20px; background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; text-decoration: none; border-radius: 5px; font-weight: 600; font-size: 0.9em;">View on GitHub</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>💼 HireMe - HR Retention Model</h3>
+                    </div>
+                    <div class="project-body">
+                        <p>ML model to predict employee retention based on salary, department, and other factors. Helps organizations understand turnover patterns and make data-driven HR decisions.</p>
+                        <div class="tech-tags">
+                            <span class="tag">Classification</span>
+                            <span class="tag">scikit-learn</span>
+                            <span class="tag">HR Analytics</span>
+                            <span class="tag">Business</span>
+                        </div>
+                        <a href="https://github.com/kadibia/HR-Retention" target="_blank" style="display: inline-block; margin-top: 15px; padding: 8px 20px; background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; text-decoration: none; border-radius: 5px; font-weight: 600; font-size: 0.9em;">View on GitHub</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>🗑️ Waste Management System</h3>
+                    </div>
+                    <div class="project-body">
+                        <p>AI-powered system for waste detection, classification and management optimization. Helps improve recycling efficiency and waste sorting processes using computer vision.</p>
+                        <div class="tech-tags">
+                            <span class="tag">Computer Vision</span>
+                            <span class="tag">Classification</span>
+                            <span class="tag">Sustainability</span>
+                            <span class="tag">Python</span>
+                        </div>
+                        <a href="https://github.com/kadibia/waste-system" target="_blank" style="display: inline-block; margin-top: 15px; padding: 8px 20px; background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; text-decoration: none; border-radius: 5px; font-weight: 600; font-size: 0.9em;">View on GitHub</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="publications">
+        <div class="container">
+            <h2>Publications & Research</h2>
+            <p class="section-subtitle">Contributing to AI innovation and entrepreneurship discourse</p>
+            
+            <div class="highlights">
+                <div class="highlight-card">
+                    <h3>📘 Published Book</h3>
+                    <p><strong>"What I Wish Before Kickstarting My Programming Career"</strong></p>
+                    <p>A comprehensive guide for aspiring programmers, sharing practical insights and lessons learned from transitioning into tech.</p>
+                    <a href="https://www.amazon.com/What-Before-Kickstarting-Programming-Career/dp/B0C9S8SVZP/ref=sr_1_1" target="_blank" style="display: inline-block; margin-top: 15px; padding: 10px 20px; background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; text-decoration: none; border-radius: 5px; font-weight: 600;">View on Amazon</a>
+                </div>
+                <div class="highlight-card">
+                    <h3>📚 ATPS Training Manual</h3>
+                    <p><strong>AI in Agriculture Training Program</strong></p>
+                    <p>Developed comprehensive training manual for African Technology Policy Studies Network (ATPS), focusing on practical AI implementation in agricultural contexts across Africa.</p>
+                    <a href="https://atpsnet.org/wp-content/uploads/2024/10/AI4AFS-Training-Manual.pdf" target="_blank" style="display: inline-block; margin-top: 15px; padding: 10px 20px; background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; text-decoration: none; border-radius: 5px; font-weight: 600;">Download PDF</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="goals">
+        <div class="container">
+            <h2>Current Focus</h2>
+            <div class="highlights">
+                <div class="highlight-card">
+                    <h3>🔬 Hardware-Aware Model Compression</h3>
+                    <p>Researching task-specific importance estimation and dynamic resource allocation for neural network compression on edge devices. Focus on preserving critical model components for disease detection while achieving real-time performance on affordable hardware.</p>
+                </div>
+                <div class="highlight-card">
+                    <h3>🔄 Edge-First Architecture</h3>
+                    <p>Building edge-optimized ML systems with automated monitoring and retraining to maintain model performance in real-world conditions.</p>
+                </div>
+                <div class="highlight-card">
+                    <h3>🌍 Cross-Domain Impact</h3>
+                    <p>Expanding AI solutions across agriculture, healthcare, finance, and other sectors to maximize societal and business impact.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <h2>Let's Collaborate</h2>
+            <p class="section-subtitle">Open to collaborations, consultancies, and partnerships in AI/ML projects. I prefer clear, outcome-driven projects with measurable impact.</p>
+            
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <h3>📧 Email</h3>
+                    <a href="mailto:ikevudechukwuka@gmail.com">ikevudechukwuka@gmail.com</a>
+                    <p style="margin-top: 10px; color: var(--text-light); font-size: 0.9em;">For project inquiries and collaborations</p>
+                </div>
+                <div class="contact-card">
+                    <h3>💼 LinkedIn</h3>
+                    <a href="https://linkedin.com/in/chukwuka-ikevude" target="_blank">Chukwuka Ikevude</a>
+                    <p style="margin-top: 10px; color: var(--text-light); font-size: 0.9em;">Professional networking</p>
+                </div>
+                <div class="contact-card">
+                    <h3>🌐 X.com</h3>
+                    <a href="https://x.com/Mr_Kadibia" target="_blank">@Mr_Kadibia</a>
+                    <p style="margin-top: 10px; color: var(--text-light); font-size: 0.9em;">I share random thoughts</p>
+                </div>
+                <div class="contact-card">
+                    <h3>💻 GitHub</h3>
+                    <a href="https://github.com/kadibia" target="_blank">@kadibia</a>
+                    <p style="margin-top: 10px; color: var(--text-light); font-size: 0.9em;">Check repositories</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Chukwuka Ikevude. All rights reserved.</p>
+            <p>Building AI solutions that make a difference.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Navigation Toggle
+        const navToggle = document.querySelector('.nav-toggle');
+        const navMenu = document.querySelector('.nav-menu');
+
+        navToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            navToggle.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on a nav link
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                navToggle.classList.remove('active');
+            });
+        });
+
+        // Show/hide navigation based on scroll position
+        const nav = document.getElementById('main-nav');
+        const aboutSection = document.getElementById('about');
+        
+        function checkScroll() {
+            const aboutPosition = aboutSection.getBoundingClientRect().top;
+            const scrollPosition = window.scrollY;
+            
+            // Show nav when we start scrolling down to the about section
+            if (scrollPosition > 100) {
+                nav.classList.add('visible');
+            } else {
+                nav.classList.remove('visible');
+            }
+        }
+
+        window.addEventListener('scroll', checkScroll);
+    </script>
+</body>
+</html>
